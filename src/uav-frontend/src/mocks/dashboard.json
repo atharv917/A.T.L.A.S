@@ -1,0 +1,180 @@
+{
+  "1": {
+    "engineId": 1,
+    "engineCode": "UAV-ENG-001",
+    "platformId": "TAPAS-01",
+    "position": "PORT",
+    "engineStatus": "ACTIVE",
+    "regime": "LOITER",
+    "dataSource": "SIMULATED",
+    "twinAvailable": true,
+
+    "telemetry": {
+      "timestamp": "2026-09-09T14:32:00",
+      "rpm": 2450, "manifoldPressure": 89.2,
+      "coolantTempC": 88, "oilPressure": 412, "oilTemperature": 92,
+      "egtCylinders": [615, 618, 649, 620],
+      "chtCylinders": [178, 176, 196, 177],
+      "ambientPressureKpa": 46.5, "ambientTempC": -18.2,
+      "pressureAltitudeFt": 22000
+    },
+
+    "twin": {
+      "expected": { "cht_c": [172.1, 171.8, 172.4, 171.9] },
+      "residual": { "cht_c": [1.2, 0.8, 31.4, 1.1] },
+      "parameters": {
+        "volumetric_efficiency": {"value": 0.862, "sigma": 0.004, "nominal": 0.880},
+        "cooling_factor": {"value": 0.91, "sigma": 0.03, "nominal": 1.0},
+        "boost_capability": {"value": 0.97, "sigma": 0.02, "nominal": 1.0},
+        "oil_system_health": {"value": 0.96, "sigma": 0.01, "nominal": 1.0}
+      },
+      "engineDelta": { "cht_mean_diff": 3.1, "egt_mean_diff": 14.2 },
+      "cylinderSpread": { "egt_spread": 38.0, "hottest_cylinder": 3 },
+      "anomalyScore": 2.6,
+      "anomalyHistory": [
+        {"t": "-2h12m", "score": 1.1}, {"t": "-2h00m", "score": 1.2},
+        {"t": "-1h30m", "score": 1.3}, {"t": "-1h00m", "score": 1.4},
+        {"t": "-0h40m", "score": 1.9}, {"t": "-0h20m", "score": 2.3},
+        {"t": "0h", "score": 2.6}
+      ],
+      "anomalyThreshold": 3.0
+    },
+
+    "diagnosis": {
+      "hypotheses": [
+        {"fault": "injector_degradation_cyl3", "label": "Injector degradation (cyl 3)", "probability": 0.61},
+        {"fault": "exhaust_valve_recession_cyl3", "label": "Exhaust valve recession (cyl 3)", "probability": 0.27},
+        {"fault": "egt_sensor_drift_cyl3", "label": "EGT sensor drift (cyl 3)", "probability": 0.09},
+        {"fault": "cooling_system_degradation", "label": "Cooling system degradation", "probability": 0.03}
+      ]
+    },
+
+    "health": {
+      "overall": 0.78, "limitedBy": "combustion",
+      "components": {
+        "cooling": {"index": 0.91, "confidence": 0.82},
+        "combustion": {"index": 0.78, "confidence": 0.71},
+        "induction": {"index": 0.97, "confidence": 0.44},
+        "lubrication": {"index": 0.96, "confidence": 0.88}
+      }
+    },
+
+    "rul": {
+      "reportedTier": 2,
+      "component": "combustion_cyl3",
+      "medianHours": 96, "p05Hours": 51, "p95Hours": 158,
+      "pFailMission": 0.024,
+      "tiers": [
+        {"tier": 1, "medianHours": 118},
+        {"tier": 2, "medianHours": 96},
+        {"tier": 3, "onsetHoursAgo": 2.2}
+      ]
+    },
+
+    "missionSim": {
+      "results": [
+        {"variant": "as_planned", "label": "As Planned", "pComplete": 0.971, "damageConsumed": 0.031},
+        {"variant": "derated_85pct", "label": "De-rated 85%", "pComplete": 0.989, "damageConsumed": 0.019}
+      ],
+      "comparativeRatio": 1.63
+    },
+
+    "faultAlerts": [
+      {"id": 5, "faultType": "COMBUSTION_ANOMALY", "severity": "MEDIUM",
+       "message": "Cylinder 3 EGT/CHT diverging from siblings", "resolved": false}
+    ],
+
+    "engineOther": {
+      "engineId": 2, "engineCode": "UAV-ENG-002", "position": "STARBOARD",
+      "chtCylinders": [174, 173, 175, 172],
+      "egtCylinders": [611, 609, 613, 610]
+    }
+  },
+
+  "2": {
+    "engineId": 2,
+    "engineCode": "UAV-ENG-002",
+    "platformId": "TAPAS-01",
+    "position": "STARBOARD",
+    "engineStatus": "ACTIVE",
+    "regime": "LOITER",
+    "dataSource": "SIMULATED",
+    "twinAvailable": true,
+
+    "telemetry": {
+      "timestamp": "2026-09-09T14:32:00",
+      "rpm": 2447, "manifoldPressure": 88.7,
+      "coolantTempC": 86, "oilPressure": 408, "oilTemperature": 90,
+      "egtCylinders": [611, 609, 613, 610],
+      "chtCylinders": [174, 173, 175, 172],
+      "ambientPressureKpa": 46.5, "ambientTempC": -18.2,
+      "pressureAltitudeFt": 22000
+    },
+
+    "twin": {
+      "expected": { "cht_c": [173.0, 172.6, 173.1, 172.4] },
+      "residual": { "cht_c": [1.0, 0.4, 1.9, -0.4] },
+      "parameters": {
+        "volumetric_efficiency": {"value": 0.878, "sigma": 0.003, "nominal": 0.880},
+        "cooling_factor": {"value": 0.99, "sigma": 0.02, "nominal": 1.0},
+        "boost_capability": {"value": 0.99, "sigma": 0.02, "nominal": 1.0},
+        "oil_system_health": {"value": 0.98, "sigma": 0.01, "nominal": 1.0}
+      },
+      "engineDelta": { "cht_mean_diff": -3.1, "egt_mean_diff": -14.2 },
+      "cylinderSpread": { "egt_spread": 4.0, "hottest_cylinder": 3 },
+      "anomalyScore": 0.7,
+      "anomalyHistory": [
+        {"t": "-2h12m", "score": 0.6}, {"t": "-2h00m", "score": 0.7},
+        {"t": "-1h30m", "score": 0.6}, {"t": "-1h00m", "score": 0.8},
+        {"t": "-0h40m", "score": 0.7}, {"t": "-0h20m", "score": 0.6},
+        {"t": "0h", "score": 0.7}
+      ],
+      "anomalyThreshold": 3.0
+    },
+
+    "diagnosis": {
+      "hypotheses": [
+        {"fault": "nominal_within_noise", "label": "Nominal (within noise)", "probability": 0.86},
+        {"fault": "egt_sensor_drift_cyl3", "label": "EGT sensor drift (cyl 3)", "probability": 0.08},
+        {"fault": "injector_degradation_cyl3", "label": "Injector degradation (cyl 3)", "probability": 0.06}
+      ]
+    },
+
+    "health": {
+      "overall": 0.95, "limitedBy": "induction",
+      "components": {
+        "cooling": {"index": 0.99, "confidence": 0.83},
+        "combustion": {"index": 0.98, "confidence": 0.79},
+        "induction": {"index": 0.95, "confidence": 0.47},
+        "lubrication": {"index": 0.98, "confidence": 0.9}
+      }
+    },
+
+    "rul": {
+      "reportedTier": 3,
+      "component": "exhaust_valve",
+      "medianHours": 1420, "p05Hours": 890, "p95Hours": 2100,
+      "pFailMission": 0.003,
+      "tiers": [
+        {"tier": 1, "medianHours": 1480},
+        {"tier": 3, "onsetHoursAgo": null}
+      ]
+    },
+
+    "missionSim": {
+      "results": [
+        {"variant": "as_planned", "label": "As Planned", "pComplete": 0.994, "damageConsumed": 0.012},
+        {"variant": "derated_85pct", "label": "De-rated 85%", "pComplete": 0.997, "damageConsumed": 0.008}
+      ],
+      "comparativeRatio": 1.5
+    },
+
+    "faultAlerts": [],
+
+    "engineOther": {
+      "engineId": 1, "engineCode": "UAV-ENG-001", "position": "PORT",
+      "chtCylinders": [178, 176, 196, 177],
+      "egtCylinders": [615, 618, 649, 620]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# Three services under src/, each with its own dependency file:
+#   src/uav-twin/requirements.txt   (Python)
+#   src/uav-backend/pom.xml         (Java / Maven)
+#   src/uav-frontend/package.json   (Node)
