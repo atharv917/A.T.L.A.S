@@ -43,8 +43,7 @@ ATLAS/
 ```
 
 ## 8. Final Presentation
-See [submission/Copy of SIH2026-IDEA-Presentation-Format.pptx.pdf](submission/Copy of SIH2026-IDEA-Presentation-Format.pptx.pdf).
-
+See submission/Copy of SIH2026-IDEA-Presentation-Format.pptx.pdf
 ## 9. Demo Video
 See [submission/DEMO.md](submission/DEMO.md).
 
