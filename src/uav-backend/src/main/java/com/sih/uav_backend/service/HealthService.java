@@ -1,6 +1,7 @@
 package com.sih.uav_backend.service;
 
 import com.sih.uav_backend.dto.HealthResponse;
+import com.sih.uav_backend.dto.PairedEngineSummary;
 import com.sih.uav_backend.entity.Engine;
 import com.sih.uav_backend.entity.HealthSnapshot;
 import com.sih.uav_backend.entity.Telemetry;
@@ -10,6 +11,7 @@ import com.sih.uav_backend.repository.TelemetryRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class HealthService {
@@ -105,12 +107,49 @@ public class HealthService {
 
         healthRepository.save(snapshot);
 
+        PairedEngineSummary pairedEngine = findPairedEngineSummary(engine);
+
         return new HealthResponse(
                 engineId,
                 score,
                 status,
                 anomalyScore,
-                recommendation
+                recommendation,
+                pairedEngine
         );
+    }
+
+    private PairedEngineSummary findPairedEngineSummary(Engine engine) {
+
+        if (engine.getPlatformId() == null) {
+            return null;
+        }
+
+        return engineRepository
+                .findByPlatformIdAndIdNot(engine.getPlatformId(), engine.getId())
+                .map(paired -> {
+
+                    Optional<HealthSnapshot> pairedSnapshot =
+                            healthRepository.findTopByEngineOrderByTimestampDesc(paired);
+
+                    Double pairedHealthScore = null;
+                    String pairedHealthStatus = null;
+                    Double pairedAnomalyScore = null;
+
+                    if (pairedSnapshot.isPresent()) {
+                        pairedHealthScore = pairedSnapshot.get().getHealthScore();
+                        pairedHealthStatus = pairedSnapshot.get().getHealthStatus();
+                        pairedAnomalyScore = pairedSnapshot.get().getAnomalyScore();
+                    }
+
+                    return new PairedEngineSummary(
+                            paired.getId(),
+                            paired.getEngineCode(),
+                            pairedHealthScore,
+                            pairedHealthStatus,
+                            pairedAnomalyScore
+                    );
+                })
+                .orElse(null);
     }
 }

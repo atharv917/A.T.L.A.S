@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface EngineRepository extends JpaRepository<Engine, Long> {
 
     Optional<Engine> findByEngineCode(String engineCode);
+
+    Optional<Engine> findByPlatformIdAndIdNot(String platformId, Long id);
 }

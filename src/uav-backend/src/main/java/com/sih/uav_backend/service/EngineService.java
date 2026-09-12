@@ -46,6 +46,9 @@ public class EngineService {
                         : "ACTIVE"
         );
 
+        engine.setPlatformId(request.platformId());
+        engine.setPosition(request.position());
+
         engine.setCreatedAt(LocalDateTime.now());
 
         return engineRepository.save(engine);
@@ -71,6 +74,8 @@ public class EngineService {
         engine.setEngineType(request.engineType());
         engine.setRatedPower(request.ratedPower());
         engine.setRatedRpm(request.ratedRpm());
+        engine.setPlatformId(request.platformId());
+        engine.setPosition(request.position());
 
         if (request.totalOperatingHours() != null) {
             engine.setTotalOperatingHours(

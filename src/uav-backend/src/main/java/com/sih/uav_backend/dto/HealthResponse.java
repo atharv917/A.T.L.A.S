@@ -5,6 +5,7 @@ public record HealthResponse(
         Double healthScore,
         String healthStatus,
         Double anomalyScore,
-        String recommendation
+        String recommendation,
+        PairedEngineSummary pairedEngine
 ) {
 }

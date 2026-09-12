@@ -28,6 +28,10 @@ public class Engine {
 
     private String status;
 
+    private String platformId;
+
+    private String position;
+
     private LocalDateTime createdAt;
 
     public Engine() {
@@ -99,6 +103,22 @@ public class Engine {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPlatformId() {
+        return platformId;
+    }
+
+    public void setPlatformId(String platformId) {
+        this.platformId = platformId;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     public LocalDateTime getCreatedAt() {

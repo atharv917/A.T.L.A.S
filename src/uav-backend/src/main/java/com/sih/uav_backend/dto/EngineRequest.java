@@ -19,6 +19,10 @@ public record EngineRequest(
 
         Double totalOperatingHours,
 
-        String status
+        String status,
+
+        String platformId,
+
+        String position
 ) {
 }

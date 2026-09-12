@@ -18,6 +18,8 @@ public record DashboardResponse(
 
         long telemetryRecords,
 
-        String recommendation
+        String recommendation,
+
+        PairedEngineSummary pairedEngine
 ) {
 }

@@ -60,7 +60,8 @@ public class DashboardService {
                 health.anomalyScore(),
                 activeFaults,
                 telemetryRecords,
-                health.recommendation()
+                health.recommendation(),
+                health.pairedEngine()
         );
     }
 }
